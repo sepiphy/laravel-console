@@ -1,0 +1,40 @@
+{
+    "name": "sepiphy/laravel-console",
+    "description": "The \"sepiphy/laravel-console\" package extends Laravel Console Component.",
+    "keywords": [
+        "sepiphy", "laravel", "laravel-console"
+    ],
+    "type": "library",
+    "homepage": "https://github.com/sepiphy/laravel-extensions",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/sepiphy/laravel-extensions/issues",
+        "source": "https://github.com/sepiphy/laravel-extensions"
+    },
+    "authors": [
+        {
+            "name": "Nguyễn Xuân Quỳnh",
+            "email": "nguyenxuanquynh2210vghy@gmail.com",
+            "homepage": "https://nguyenquynh2210.com",
+            "role": "Software Developer"
+        }
+    ],
+    "require": {
+        "illuminate/console": "~5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sepiphy\\Laravel\\Console\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.3-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
