@@ -45,12 +45,12 @@ class EnvSetCommand extends Command
         if ($oldValue === null) {
             $this->appendVariable($name, $newValue);
 
-            return $this->info("A new environment variable '$name' has been set successfully.");
+            $this->info("A new environment variable '$name' has been set successfully.");
         }
 
         $this->setVariable($name, $newValue, $oldValue);
 
-        return $this->info("Environment variable '$name' has been changed from '$oldValue' to '$newValue'");
+        $this->info("Environment variable '$name' has been changed from '$oldValue' to '$newValue'");
     }
 
     /**
