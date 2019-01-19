@@ -12,11 +12,10 @@
 namespace Sepiphy\Laravel\Console;
 
 use Illuminate\Console\GeneratorCommand;
-use Sepiphy\Laravel\Console\ReplaceNamespaceTrait;
 
 class ClassMakeCommand extends GeneratorCommand
 {
-    use ReplaceNamespaceTrait;
+    use DecorateStub;
 
     /**
      * The name and signature of the console command.

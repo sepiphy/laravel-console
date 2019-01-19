@@ -11,16 +11,14 @@
 
 namespace Sepiphy\Laravel\Console;
 
-trait ReplaceNamespaceTrait
+trait DecorateStub
 {
     /**
-     * Replaces interface name and parent name for given stub
+     * @see \Illuminate\Console\GeneratorCommand
      *
-     * @param  string  $stub
-     * @param  string  $name
-     * @return self
+     * @return $this
      */
-    public function replaceNamespace(&$stub, $name)
+    protected function replaceNamespace(&$stub, $name)
     {
         if (!$parent = $this->option('extends')) {
             return parent::replaceNamespace($stub, $name);

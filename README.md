@@ -1,13 +1,13 @@
 
-# Laravel Console Extension
+# The Sepiphy Laravel Console package
 
 ## Requirements
 
-- Laravel [5.6](https://laravel.com/docs/5.6) or [5.7](https://laravel.com/docs/5.7).
+- Laravel [5.6](https://laravel.com/docs/5.5), [5.6](https://laravel.com/docs/5.6) or [5.7](https://laravel.com/docs/5.7).
 
 ## Installation
 
-You should install the `sepiphy/laravel-console` dependency via Composer:
+Install the `sepiphy/laravel-console` package via Composer:
 
 ```bash
 composer require sepiphy/laravel-console
@@ -32,8 +32,6 @@ return [
 
 ## Usage
 
-These are available commands now:
-
 ```bash
 # Create a new class file.
 php artisan make:class ClassName
@@ -42,6 +40,16 @@ php artisan make:interface InterfaceName
 # Create a new trait file.
 php artisan make:trait TraitName
 # Search commands by keyword.
-php artisan search OneWord
-php artisan search 'Some words that you want to search'
+php artisan search AnyKeywords
+php artisan search 'Any keywords'
+# Set a variable in .env file.
+php artisan env:set APP_NAME 'An Application Name'
 ```
+
+## Contributing
+
+Please visit [sepiphy/laravel-extensions](../../README.md) for more details!
+
+## License
+
+The `sepiphy/laravel-console` package is open-sourced software licensed under the [MIT license](LICENSE.md).

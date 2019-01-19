@@ -1,12 +1,12 @@
 {
     "name": "sepiphy/laravel-console",
-    "description": "The \"sepiphy/laravel-console\" package extends Laravel Console Component.",
+    "description": "The Sepiphy Laravel Console package.",
     "keywords": [
-        "sepiphy", "laravel", "laravel-console"
+        "sepiphy", "laravel", "laravel-console", "console"
     ],
     "type": "library",
-    "homepage": "https://github.com/sepiphy/laravel-extensions",
     "license": "MIT",
+    "homepage": "https://github.com/sepiphy/laravel-extensions",
     "support": {
         "issues": "https://github.com/sepiphy/laravel-extensions/issues",
         "source": "https://github.com/sepiphy/laravel-extensions"
