@@ -63,7 +63,7 @@ class EnvSetCommand extends Command
     public function setVariable($name, $value)
     {
         $replaced = preg_replace(
-            "/$name=.*/",
+            $this->keyMatchingPattern($name),
             "$name=$value",
             file_get_contents($envFilePath = $this->laravel->environmentFilePath())
         );
@@ -107,11 +107,22 @@ class EnvSetCommand extends Command
     public function env($key)
     {
         $isMatch = preg_match(
-            "/$key=(.*)/",
+            $this->keyMatchingPattern($key),
             file_get_contents($this->laravel->environmentFilePath()),
             $matches
         );
 
         return $isMatch ? $matches[1] : null;
+    }
+
+    /**
+     * Get a regex pattern that will match passed key.
+     *
+     * @param  string  $key
+     * @return string
+     */
+    public function keyMatchingPattern($key)
+    {
+        return "/^$key=(.*)$/m";
     }
 }
