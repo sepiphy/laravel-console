@@ -32,6 +32,7 @@ class ConsoleServiceProvider extends ServiceProvider
         'TraitMakeCommand' => 'command.trait.make',
         'SearchCommand' => 'command.search',
         'EnvSetCommand' => 'command.env.set',
+        'AppNamespaceCommand' => 'command.app.namespace',
     ];
 
     /**
@@ -118,6 +119,19 @@ class ConsoleServiceProvider extends ServiceProvider
     {
         $this->app->singleton($name, function ($app) {
             return new EnvSetCommand;
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @param  string  $name
+     * @return void
+     */
+    protected function registerAppNamespaceCommand($name)
+    {
+        $this->app->singleton($name, function ($app) {
+            return new AppNamespaceCommand($app['composer'], $app['files']);
         });
     }
 }

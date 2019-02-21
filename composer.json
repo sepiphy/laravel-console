@@ -20,7 +20,9 @@
         }
     ],
     "require": {
-        "illuminate/console": "~5.5"
+        "illuminate/console": "~5.5",
+        "illuminate/support": "~5.5",
+        "illuminate/filesystem": "~5.5"
     },
     "autoload": {
         "psr-4": {
