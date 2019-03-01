@@ -24,7 +24,8 @@ class ClassMakeCommand extends GeneratorCommand
      */
     protected $signature = 'make:class
                             {name : The class name}
-                            {--extends= : The class parent}';
+                            {--extends= : The class parent}
+                            {--implements=* : The interfaces}';
 
     /**
      * The console command description.
@@ -46,7 +47,15 @@ class ClassMakeCommand extends GeneratorCommand
     protected function getStub()
     {
         if ($this->option('extends')) {
+            if ($this->option('implements')) {
+                return __DIR__.'/stubs/class.parent.interface.stub';
+            }
+
             return __DIR__.'/stubs/class.parent.stub';
+        }
+
+        if ($this->option('implements')) {
+            return __DIR__.'/stubs/class.interface.stub';
         }
 
         return __DIR__.'/stubs/class.stub';

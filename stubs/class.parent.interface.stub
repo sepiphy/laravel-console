@@ -1,0 +1,11 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyParentFullName;
+DummyImportInterfaces
+
+class DummyClass extends DummyParentName implements DummyInterfaces
+{
+    //
+}

@@ -20,30 +20,52 @@ trait DecorateStub
      */
     protected function replaceNamespace(&$stub, $name)
     {
-        if (!$parent = $this->option('extends')) {
+        $parent = $this->option('extends');
+        $interfaces = $this->hasOption('implements') ? $this->option('implements') : null;
+
+        if (!$parent && !$interfaces) {
             return parent::replaceNamespace($stub, $name);
         }
 
-        $namespace = $this->getNamespace($name);
-        $name = trim(substr($name, strrpos($name, '\\')), '\\');
-        $parentName = trim(substr($parent, strrpos($parent, '\\')), '\\');
+        $interfaceNames = '';
+        $importInterfaces = '';
+        if ($interfaces) {
+            if (is_array($interfaces)) {
+                $importInterfaces = '';
+                foreach ($interfaces as $interface) {
+                    $importInterfaces .= sprintf("use %s; \n", $interface);
+                    $interfaceNames .= $this->getClassName($interface) . ', ';
+                }
+            } else {
+                $importInterfaces = sprintf('use %s;', $interfaces);
+                $interfaceNames .= $this->getClassName($interfaces);
+            }
+        }
 
-        $stub = str_replace(
-            [
-                'DummyNamespace',
-                'DummyClass',
-                'DummyParentFullName',
-                'DummyParentName',
-            ],
-            [
-                $namespace,
-                $name,
-                $parent,
-                $parentName,
-            ],
-            $stub
-        );
+        $namespace = $this->getNamespace($name);
+        $name = $this->getClassName($name);
+        $parentName = $this->getClassName($parent);
+
+        $stub = strtr($stub, [
+            'DummyNamespace' => $namespace,
+            'DummyClass' => $name,
+            'DummyParentFullName' => $parent,
+            'DummyParentName' => $parentName,
+            'DummyInterfaces' => trim($interfaceNames, ', '),
+            'DummyImportInterfaces' => trim($importInterfaces, "\n"),
+        ]);
 
         return $this;
+    }
+
+    /**
+     * Get class name.
+     *
+     * @param  string  $class
+     * @return string
+     */
+    public function getClassName($class)
+    {
+        return trim(substr($class, strrpos($class, '\\')), '\\');
     }
 }
