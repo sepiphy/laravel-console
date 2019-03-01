@@ -32,17 +32,45 @@ return [
 
 ## Usage
 
+
+### Create a new class file.
 ```bash
-# Create a new class file.
 php artisan make:class ClassName
-# Create a new interface file.
+```
+If you want your class extend another class. You can use the `--extends` option.
+```bash
+php artisan make:class ClassName --extends=ParentClass
+```
+If you want your class implement an interface. You can use the `--implements` option.
+```bash
+php artisan make:class ClassName --implements=InterfaceName
+```
+Of course, a class can implement many interfaces.
+```bash
+php artisan make:class ClassName
+--implements=FirstInterfaceName
+--implements=SecondInterfaceName
+--implements=TheOther
+```
+### Create a new interface file.
+```bash
 php artisan make:interface InterfaceName
-# Create a new trait file.
+```
+If you want your interface extend another interface. You can use the `--extends` option.
+```bash
+php artisan make:interface InterfaceName --extends=ParentInterface
+```
+### Create a new trait file.
+```bash
 php artisan make:trait TraitName
-# Search commands by keyword.
+```
+### Search commands by keyword.
+```bash
 php artisan search AnyKeywords
 php artisan search 'Any keywords'
-# Set a variable in .env file.
+```
+### Set a variable in .env file.
+```bash
 php artisan env:set APP_NAME 'An Application Name'
 ```
 
