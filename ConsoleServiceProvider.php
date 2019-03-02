@@ -11,16 +11,11 @@
 
 namespace Sepiphy\Laravel\Console;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Support\DeferrableProvider;
 
-class ConsoleServiceProvider extends ServiceProvider
+class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected $defer = true;
-
     /**
      * The supported commands.
      *
@@ -32,7 +27,7 @@ class ConsoleServiceProvider extends ServiceProvider
         'TraitMakeCommand' => 'command.trait.make',
         'SearchCommand' => 'command.search',
         'EnvSetCommand' => 'command.env.set',
-        'AppNamespaceCommand' => 'command.app.namespace',
+        'AppNameCommand' => 'command.app.namespace',
     ];
 
     /**
@@ -128,10 +123,10 @@ class ConsoleServiceProvider extends ServiceProvider
      * @param  string  $name
      * @return void
      */
-    protected function registerAppNamespaceCommand($name)
+    protected function registerAppNameCommand($name)
     {
         $this->app->singleton($name, function ($app) {
-            return new AppNamespaceCommand($app['composer'], $app['files']);
+            return new AppNameCommand($app['composer'], $app['files']);
         });
     }
 }

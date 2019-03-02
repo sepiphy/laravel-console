@@ -15,16 +15,15 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Composer;
 use Symfony\Component\Finder\Finder;
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Console\Input\InputArgument;
 
-class AppNamespaceCommand extends Command
+class AppNameCommand extends Command
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $signature = 'app:namespace {namespace : The app namespace}';
+    protected $signature = 'app:name {namespace : The app namespace}';
 
     /**
      * The console command description.
@@ -99,9 +98,10 @@ class AppNamespaceCommand extends Command
     protected function setAppDirectoryNamespace()
     {
         $files = Finder::create()
-                            ->in($this->laravel['path'])
-                            ->contains($this->currentRoot)
-                            ->name('*.php');
+            ->in($this->laravel['path'])
+            ->contains($this->currentRoot)
+            ->name('*.php')
+        ;
 
         foreach ($files as $file) {
             $this->replaceNamespace($file->getRealPath());
@@ -233,9 +233,10 @@ class AppNamespaceCommand extends Command
     protected function setDatabaseFactoryNamespaces()
     {
         $files = Finder::create()
-                            ->in($this->laravel->databasePath('factories'))
-                            ->contains($this->currentRoot)
-                            ->name('*.php');
+            ->in($this->laravel->databasePath('factories'))
+            ->contains($this->currentRoot)
+            ->name('*.php')
+        ;
 
         foreach ($files as $file) {
             $this->replaceIn(
