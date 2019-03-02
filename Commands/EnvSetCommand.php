@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sepiphy\Laravel\Console;
+namespace Sepiphy\Laravel\Console\Commands;
 
 use Illuminate\Console\Command;
 

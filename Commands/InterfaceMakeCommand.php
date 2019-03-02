@@ -9,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Sepiphy\Laravel\Console;
+namespace Sepiphy\Laravel\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Sepiphy\Laravel\Console\Traits\DecorateStub;
 
-class ClassMakeCommand extends GeneratorCommand
+class InterfaceMakeCommand extends GeneratorCommand
 {
     use DecorateStub;
 
@@ -22,24 +23,23 @@ class ClassMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'make:class
-                            {name : The class name}
-                            {--extends= : The class parent}
-                            {--implements=* : The interfaces}';
+    protected $signature = 'make:interface
+                            {name : The interface name}
+                            {--extends= : The interface parent}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new class';
+    protected $description = 'Create a new interface';
 
     /**
      * The type of element being generated.
      *
      * @var string
      */
-    protected $type = 'Class';
+    protected $type = 'Interface';
 
     /**
      * {@inheritdoc}
@@ -47,17 +47,9 @@ class ClassMakeCommand extends GeneratorCommand
     protected function getStub()
     {
         if ($this->option('extends')) {
-            if ($this->option('implements')) {
-                return __DIR__.'/stubs/class.parent.interface.stub';
-            }
-
-            return __DIR__.'/stubs/class.parent.stub';
+            return __DIR__.'/../stubs/interface.parent.stub';
         }
 
-        if ($this->option('implements')) {
-            return __DIR__.'/stubs/class.interface.stub';
-        }
-
-        return __DIR__.'/stubs/class.stub';
+        return __DIR__.'/../stubs/interface.stub';
     }
 }

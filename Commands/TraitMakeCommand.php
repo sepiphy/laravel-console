@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sepiphy\Laravel\Console;
+namespace Sepiphy\Laravel\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
@@ -41,6 +41,6 @@ class TraitMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/stubs/trait.stub';
+        return __DIR__.'/../stubs/trait.stub';
     }
 }

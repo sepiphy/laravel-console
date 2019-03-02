@@ -12,7 +12,13 @@
 namespace Sepiphy\Laravel\Console;
 
 use Illuminate\Support\ServiceProvider;
+use Sepiphy\Laravel\Console\Commands\EnvSetCommand;
+use Sepiphy\Laravel\Console\Commands\SearchCommand;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Sepiphy\Laravel\Console\Commands\AppNameCommand;
+use Sepiphy\Laravel\Console\Commands\ClassMakeCommand;
+use Sepiphy\Laravel\Console\Commands\TraitMakeCommand;
+use Sepiphy\Laravel\Console\Commands\InterfaceMakeCommand;
 
 class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvider
 {
