@@ -29,7 +29,7 @@ class EnvSetCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Set an environment variable in .env file.';
+    protected $description = 'Set an environment variable in .env file';
 
     /**
      * Execute the console command.

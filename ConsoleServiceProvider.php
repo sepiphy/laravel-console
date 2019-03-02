@@ -33,7 +33,7 @@ class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvid
         'TraitMakeCommand' => 'command.trait.make',
         'SearchCommand' => 'command.search',
         'EnvSetCommand' => 'command.env.set',
-        'AppNameCommand' => 'command.app.namespace',
+        'AppNameCommand' => 'command.app.name',
     ];
 
     /**
