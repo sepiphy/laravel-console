@@ -7,27 +7,10 @@
 
 ## Installation
 
-Install the `sepiphy/laravel-console` package via Composer:
+Install the `sepiphy/laravel-console` package via Composer.
 
 ```bash
 composer require sepiphy/laravel-console
-```
-
-Then, you have to add the `Sepiphy\Laravel\Console\ConsoleServiceProvider` class to the `config/app.php` configuration file.
-
-```php
-return [
-
-    'providers' => [
-
-        /*
-         * Package Service Providers...
-         */
-        Sepiphy\Laravel\Console\ConsoleServiceProvider::class,
-
-    ],
-
-];
 ```
 
 ## Usage
