@@ -1,5 +1,7 @@
 
-# The Sepiphy Laravel Console package
+## About
+
+The Sepiphy Laravel Console package.
 
 ## Requirements
 
