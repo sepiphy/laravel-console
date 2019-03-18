@@ -61,7 +61,7 @@ php artisan env:set APP_NAME 'An Application Name'
 
 ## Contributing
 
-Please visit [sepiphy/laravel-extensions](../../README.md) for more details!
+Please visit [sepiphy/laraveltools](../../README.md) for more details!
 
 ## License
 
