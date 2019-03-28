@@ -65,8 +65,9 @@ class SearchCommand extends Command
     {
         $commands = $this->getApplication()->all();
         $keyword = strtolower($keyword);
-
-        return array_filter(
+        
+        // Search commands using strpos()
+        $results = array_filter(
             $commands,
             function ($instance, $command) use ($keyword) {
                 $searchByCommand = strpos(strtolower($command), $keyword) !== false;
@@ -76,5 +77,67 @@ class SearchCommand extends Command
             },
             ARRAY_FILTER_USE_BOTH
         );
+        
+        // If the above code can't find any command. The findAlternatives function will be called to search.
+        if (!count($results)) {
+            $suggestions = $this->findAlternatives(
+                $keyword,
+                array_keys($allCommands = $this->getApplication()->all())
+            );
+            if (count($suggestions)) {
+                $results = array_filter($allCommands, function ($instance, $command) use ($suggestions) {
+                    return in_array($command, $suggestions);
+                }, ARRAY_FILTER_USE_BOTH);
+            }
+        }
+
+        return $results;
+    }
+
+    /**
+     * @see \Symfony\Component\Console\Application::findAlternatives()
+     */
+    private function findAlternatives($name, $collection)
+    {
+        $threshold = 1e3;
+        $alternatives = [];
+
+        $collectionParts = [];
+        foreach ($collection as $item) {
+            $collectionParts[$item] = explode(':', $item);
+        }
+
+        foreach (explode(':', $name) as $i => $subname) {
+            foreach ($collectionParts as $collectionName => $parts) {
+                $exists = isset($alternatives[$collectionName]);
+                if (!isset($parts[$i]) && $exists) {
+                    $alternatives[$collectionName] += $threshold;
+                    continue;
+                } elseif (!isset($parts[$i])) {
+                    continue;
+                }
+
+                $lev = levenshtein($subname, $parts[$i]);
+                if ($lev <= \strlen($subname) / 3 || '' !== $subname && false !== strpos($parts[$i], $subname)) {
+                    $alternatives[$collectionName] = $exists ? $alternatives[$collectionName] + $lev : $lev;
+                } elseif ($exists) {
+                    $alternatives[$collectionName] += $threshold;
+                }
+            }
+        }
+
+        foreach ($collection as $item) {
+            $lev = levenshtein($name, $item);
+            if ($lev <= \strlen($name) / 3 || false !== strpos($item, $name)) {
+                $alternatives[$item] = isset($alternatives[$item]) ? $alternatives[$item] - $lev : $lev;
+            }
+        }
+
+        $alternatives = array_filter($alternatives, function ($lev) use ($threshold) {
+            return $lev < 2 * $threshold;
+        });
+        ksort($alternatives, SORT_NATURAL | SORT_FLAG_CASE);
+
+        return array_keys($alternatives);
     }
 }
