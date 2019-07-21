@@ -241,7 +241,8 @@ class AppNameCommand extends Command
         foreach ($files as $file) {
             $this->replaceIn(
                 $file->getRealPath(),
-                $this->currentRoot, $this->argument('namespace')
+                $this->currentRoot,
+                $this->argument('namespace')
             );
         }
     }

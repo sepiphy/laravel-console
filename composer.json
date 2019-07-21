@@ -1,6 +1,6 @@
 {
     "name": "sepiphy/laravel-console",
-    "description": "The Sepiphy Laravel Console package.",
+    "description": "The sepiphy/laravel-console package",
     "keywords": [
         "sepiphy", "laravel", "laravel-console", "console"
     ],
@@ -14,9 +14,7 @@
     "authors": [
         {
             "name": "Quynh Xuan Nguyen",
-            "email": "seriquynh@gmail.com",
-            "homepage": "https://seriquynh.com",
-            "role": "Software Developer"
+            "email": "seriquynh@gmail.com"
         }
     ],
     "require": {
