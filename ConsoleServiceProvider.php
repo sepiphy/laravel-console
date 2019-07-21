@@ -106,7 +106,7 @@ class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerSearchCommand($name)
     {
         $this->app->singleton($name, function ($app) {
-            return new SearchCommand;
+            return new SearchCommand();
         });
     }
 
@@ -119,7 +119,7 @@ class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerEnvSetCommand($name)
     {
         $this->app->singleton($name, function ($app) {
-            return new EnvSetCommand;
+            return new EnvSetCommand();
         });
     }
 
